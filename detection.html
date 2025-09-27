@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>瓯创检测</title>
+    <style src="reset.css"></style>
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+    <div class="banner">
+        <div class="logo">
+            <img src="img/logo.png" alt="">
+        </div>
+        <div class="content-box">
+          
+        </div>
+          <div class="content-title" style="top: 20%;">
+                <p>检测报告在线查询</p>
+                
+                <input type="text" value="OC20230208-2832"  id="name_c">
+                <div class="button-box">查询</div>
+            </div>
+            <div class="hint yes" >
+                报告编号为OC20230208-2832的检测报告存在
+            </div>
+            <div class="hint no" >
+               抱歉，没有找到相关产品！建议你拨打咨询热线
+            </div>
+            <div class="form-box">
+                <img src="img/bg.png" alt="">
+            </div>
+    </div>
+    <!-- <div style="width: 100%;height: 40px;background: red;"></div> -->
+</body>
+</html>
+<style>
+    body{
+      margin: 0;
+            position: relative;
+            font-family: Arial, sans-serif;
+            background: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+    }
+.banner{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: #fff;
+    
+}
+.logo{
+    width: 20%;
+    margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+     padding-top: env(safe-area-inset-top);
+
+}
+.logo img{
+    width: 100%;
+     display: block;
+     height: auto;
+}
+.content-box{
+    width: 100%;
+    height: 30vh;
+     min-height: 200px;
+    background: url("img/bj.jpg")no-repeat;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+.content-title{
+    
+      position: absolute;
+            width: 100%;
+            top: 10%;
+            left: 0;
+            transform: translateY(-50%);
+            padding: 0 10%;
+            z-index: 5;
+}
+.content-title p{
+    text-align: center;
+     width: 95%;
+            font-size: clamp(16px, 4vw, 24px);
+            color: #fff;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+}
+.content-title input{
+    width: 88%;
+            height: 40px;
+         
+            font-size: 16px;
+           
+}
+.button-box{
+    margin-top: 15px;
+            width: 90%;
+            height: 45px;
+            text-align: center;
+            line-height: 45px;
+            background: #4874cb;
+            font-size: 18px;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+   .button-box:active {
+            background: #3a5da8;
+            transform: translateY(1px);
+        }
+        
+        .hint {
+            width: 100%;
+            /* min-height: 10vh; */
+            padding: 15px 0px;
+            background: #f2f2f2;
+            color: #c00000;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .form-box {
+            width: 100%;
+            padding: 20px 0;
+        }
+        
+        .form-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .yes {
+            display: block;
+        }
+        
+        .no {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                width: 22%;
+            }
+            
+            .content-title {
+                 padding: 0 5%;
+            }
+            
+            .button-box {
+                height: 50px;
+                line-height: 50px;
+            }
+        }
+/* .hint{
+    width: 100%;
+    height: 10vh;
+    background: #f2f2f2;
+    color: #c00000;
+    text-align: center;
+    line-height: 10vh;
+}
+.form-box{
+    width: 100%;
+    height: 30vh;
+}
+.form-box img{
+    width: 100%;
+}
+.yes{
+    display: block;
+}
+.no{
+    display: none;
+} */
+</style>
+<script>
+  $(document).ready(function() {
+            // 防止移动端键盘弹出导致布局错乱
+            function adjustLayout() {
+                if (window.innerHeight < 500) {
+                    $('.content-title').css('top', '30%');
+                } else {
+                    $('.content-title').css('top', '20%');
+                }
+            }
+            
+            // 初始调整布局
+            adjustLayout();
+            window.addEventListener('resize', adjustLayout);
+            
+            // 处理查询逻辑
+            function handleQuery() {
+                var name_c = $("#name_c").val().trim();
+                if(name_c === "OC20230208-2832") {
+                    $(".yes").show();
+                    $(".no").hide();
+                    $(".form-box").show();
+                } else {
+                    $(".yes").hide();
+                    $(".no").show();
+                    $(".form-box").hide();
+                }
+                
+                // 收起键盘
+                document.activeElement.blur();
+            }
+            
+            // 查询按钮事件
+            $(".button-box").on("click touchstart", function(e) {
+                console.log("11111")
+                e.preventDefault();
+                handleQuery();
+            });
+            
+            // 输入框键盘事件
+            $("#name_c").on("keypress", function(e) {
+                if(e.which === 13) {
+                    handleQuery();
+                }
+            });
+            
+            // 点击空白处收起键盘
+            $(document).on('touchstart', function(e) {
+                if (!$(e.target).closest('input, button').length) {
+                    document.activeElement.blur();
+                }
+            });
+        });
+
+</script>
